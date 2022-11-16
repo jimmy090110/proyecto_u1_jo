@@ -3,6 +3,13 @@ package com.example.demo.tradicional;
 public class Medico {
 	private String nombre;
 	private String cedula;
+	
+	@Override
+	public String toString() {
+		return "Medico [nombre=" + nombre + ", cedula=" + cedula + ", getNombre()=" + getNombre() + ", getCedula()="
+				+ getCedula() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
+				+ super.toString() + "]";
+	}
 	public String getNombre() {
 		return nombre;
 		

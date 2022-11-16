@@ -8,24 +8,43 @@ public class CitaMedica {
 	private LocalDateTime fechaCita;
 	private LocalDateTime fechaAgenda;
 	private Medico medico;
-	private Paciente paceinte;
+	private Paciente paciente;
 	
-	private void agendar(String numer, LocalDateTime fechaCita, String nombreMedico, String cedulaMedico,
-			String nombrePaciente, String cedulaPaciente) {
+	public void agendar(String numer, LocalDateTime fechaCita, String nombreMedico, String cedulaMedico,
+			String nombrePaciente, String cedulaPaciente, String tipo) {
 		this.numero= numero;
 		this.fechaCita= fechaCita;
-		
+		this.fechaAgenda = LocalDateTime.now();
 		Medico medico= new Medico();
 		medico.setCedula(cedulaMedico);
 		medico.setNombre(nombreMedico);
 		
 		this.medico=medico;
+		if(tipo.equals("TE")){
+			PacienteTerceraEdad pacienteTE = new PacienteTerceraEdad();
+			pacienteTE.setCodeIESS("2655");
+			pacienteTE.setTipo("TE");
+			System.out.println("Paciente con descuento ");
+			
+			this.paciente= pacienteTE;
+			
+			
+		}else {
+				PacienteNino pacienteNino = new PacienteNino();
+				pacienteNino.setPesoNacimiento(5);
+				pacienteNino.setTipo("N");
+				this.paciente=pacienteNino;
+				System.out.println("Paciente Niño sin descuento");
+			}
+			
+		this.paciente.setNombre(nombrePaciente);
+		this.paciente.setCedula(cedulaPaciente);
+		this.guardarCita(this);
 		
-		Paciente pacienteObjeto= new Paciente();
-		pacienteObjeto.setCedula(cedulaPaciente);
-		pacienteObjeto.setNombre(nombrePaciente);
-		this.paceinte = pacienteObjeto;
-		
+	}
+	private void guardarCita(CitaMedica cita) {
+		//Aquí vamos a insertar en la BD
+		System.out.println(cita);
 	}
 	//SET Y GET
 	public String getNumero() {
@@ -52,11 +71,11 @@ public class CitaMedica {
 	public void setMedico(Medico medico) {
 		this.medico = medico;
 	}
-	public Paciente getPaceinte() {
-		return paceinte;
+	public Paciente getPaciente() {
+		return paciente;
 	}
-	public void setPaceinte(Paciente paceinte) {
-		this.paceinte = paceinte;
+	public void setPaciente(Paciente paceinte) {
+		this.paciente = paceinte;
 	}
 	
 	

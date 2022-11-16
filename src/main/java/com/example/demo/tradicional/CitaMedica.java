@@ -12,7 +12,7 @@ public class CitaMedica {
 	
 	public void agendar(String numer, LocalDateTime fechaCita, String nombreMedico, String cedulaMedico,
 			String nombrePaciente, String cedulaPaciente, String tipo) {
-		this.numero= numero;
+		this.numero= numer;
 		this.fechaCita= fechaCita;
 		this.fechaAgenda = LocalDateTime.now();
 		Medico medico= new Medico();
@@ -40,6 +40,7 @@ public class CitaMedica {
 		this.paciente.setNombre(nombrePaciente);
 		this.paciente.setCedula(cedulaPaciente);
 		this.guardarCita(this);
+		
 		
 	}
 	private void guardarCita(CitaMedica cita) {
@@ -76,6 +77,14 @@ public class CitaMedica {
 	}
 	public void setPaciente(Paciente paceinte) {
 		this.paciente = paceinte;
+	}
+	@Override
+	public String toString() {
+		return "CitaMedica [numero=" + numero + ", fechaCita=" + fechaCita + ", fechaAgenda=" + fechaAgenda
+				+ ", medico=" + medico + ", paciente=" + paciente + ", getNumero()=" + getNumero() + ", getFechaCita()="
+				+ getFechaCita() + ", getFechaAgenda()=" + getFechaAgenda() + ", getMedico()=" + getMedico()
+				+ ", getPaciente()=" + getPaciente() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
+				+ ", toString()=" + super.toString() + "]";
 	}
 	
 	

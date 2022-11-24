@@ -10,42 +10,55 @@ public class CitaMedica {
 	private Medico medico;
 	private Paciente paciente;
 	
-	public void agendar(String numer, LocalDateTime fechaCita, String nombreMedico, String cedulaMedico,
-			String nombrePaciente, String cedulaPaciente, String tipo) {
-		this.numero= numer;
+	public void agendar(String numero, LocalDateTime fechaCita, String nombreMedico, String cedulaMedico,
+			String nombrePaciente, String cedulaPaciente,String tipo) {
+		this.numero= numero;
 		this.fechaCita= fechaCita;
-		this.fechaAgenda = LocalDateTime.now();
-		Medico medico= new Medico();
-		medico.setCedula(cedulaMedico);
-		medico.setNombre(nombreMedico);
+		this.fechaAgenda= LocalDateTime.now();
+
 		
-		this.medico=medico;
-		if(tipo.equals("TE")){
-			PacienteTerceraEdad pacienteTE = new PacienteTerceraEdad();
-			pacienteTE.setCodeIESS("2655");
-			pacienteTE.setTipo("TE");
-			System.out.println("Paciente con descuento ");
-			
-			this.paciente= pacienteTE;
-			
-			
+		Medico medicoObjeto= new Medico();
+		medicoObjeto.setCedula(cedulaMedico);
+		medicoObjeto.setNombre(nombreMedico);
+		
+		this.medico=medicoObjeto;
+		
+		//Tercera edad(TE), Ninio(N)
+		if(tipo.equals("TE")) {
+		   PacienteTerceraEdad pacienteTE = new PacienteTerceraEdad();
+		   pacienteTE.setCodIess("12313245");
+		   pacienteTE.setTipo("TE");
+		    
+		   this.paciente =pacienteTE;
+		   System.out.println("paciente con descuento");
 		}else {
-				PacienteNino pacienteNino = new PacienteNino();
-				pacienteNino.setPesoNacimiento(5);
-				pacienteNino.setTipo("N");
-				this.paciente=pacienteNino;
-				System.out.println("Paciente Niño sin descuento");
-			}
-			
+			PacienteNinio pacienteNinio = new PacienteNinio(); 
+			pacienteNinio.setPesoNacimiento(5);	
+			pacienteNinio.setTipo("TE");	
+			   
+			this.paciente =pacienteNinio;
+			System.out.println("Paciente ninio sin descuento");
+		}
 		this.paciente.setNombre(nombrePaciente);
 		this.paciente.setCedula(cedulaPaciente);
+		   
 		this.guardarCita(this);
 		
-		
 	}
+	
+	
+	@Override
+	public String toString() {
+		return "CitaMedica [numero=" + numero + ", fechaCita=" + fechaCita + ", fechaAgenda=" + fechaAgenda
+				+ ", medico=" + medico + ", paceinte=" + paciente + "]";
+	}
+	
+	
 	private void guardarCita(CitaMedica cita) {
-		//Aquí vamos a insertar en la BD
+		//Insert en la base de datos, guardar la cita
 		System.out.println(cita);
+		
+		
 	}
 	//SET Y GET
 	public String getNumero() {
@@ -72,19 +85,11 @@ public class CitaMedica {
 	public void setMedico(Medico medico) {
 		this.medico = medico;
 	}
-	public Paciente getPaciente() {
+	public Paciente getPaceinte() {
 		return paciente;
 	}
-	public void setPaciente(Paciente paceinte) {
+	public void setPaceinte(Paciente paceinte) {
 		this.paciente = paceinte;
-	}
-	@Override
-	public String toString() {
-		return "CitaMedica [numero=" + numero + ", fechaCita=" + fechaCita + ", fechaAgenda=" + fechaAgenda
-				+ ", medico=" + medico + ", paciente=" + paciente + ", getNumero()=" + getNumero() + ", getFechaCita()="
-				+ getFechaCita() + ", getFechaAgenda()=" + getFechaAgenda() + ", getMedico()=" + getMedico()
-				+ ", getPaciente()=" + getPaciente() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
-				+ ", toString()=" + super.toString() + "]";
 	}
 	
 	

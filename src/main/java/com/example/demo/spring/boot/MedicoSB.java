@@ -1,6 +1,9 @@
-package com.example.demo.tradicional;
+package com.example.demo.spring.boot;
 
-public class Medico {
+import org.springframework.stereotype.Component;
+
+@Component
+public class MedicoSB {
 	@Override
 	public String toString() {
 		return "Medico [nombre=" + nombre + ", cedula=" + cedula + "]";

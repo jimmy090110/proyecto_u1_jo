@@ -7,8 +7,9 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		CitaMedica cita = new CitaMedica();
-		 cita.agendar("1225532", LocalDateTime.of(2022, 11,1,8,30), "Doctor Washo","0600584531", "Paciente Edi", "08587542631", "TE");
-	
+		cita.agendar("2413",LocalDateTime.of(2022,12,2,8,30),"Doctor Teran",
+				"4235235","Paciente Edison","2134564","N");
+		
 	}
 
-}
+} 

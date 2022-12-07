@@ -1,18 +1,21 @@
 package com.example.demo.banco.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.banco.modelo.CuentaBancaria;
-import com.example.demo.banco.repository.ICuencaBancariaRepository;
-@Service
-public class CuentaBancariaServiceImpl implements ICuentaBancariaService {
 
-		private ICuencaBancariaRepository bancariaRepository;
+
+@Service
+public class CuentaBancariaServiceImpl implements ICuentaBancariaService{
+
+	@Autowired
+	private ICuentaBancariaService bancariaRepository;
 
 	@Override
-	public CuentaBancaria buscarPorNumero(String numeroCuenta) {
+	public CuentaBancaria buscarPorNUmero(String numeroCuenta) {
 		// TODO Auto-generated method stub
-		return this.bancariaRepository.buscarPorNumero(numeroCuenta);
+		return this.bancariaRepository.buscarPorNUmero(numeroCuenta);
 	}
 
 	@Override
@@ -24,14 +27,13 @@ public class CuentaBancariaServiceImpl implements ICuentaBancariaService {
 	@Override
 	public void actualizar(CuentaBancaria cuentaBancaria) {
 		// TODO Auto-generated method stub
-		
-		
+		this.bancariaRepository.actualizar(cuentaBancaria);
 	}
 
 	@Override
 	public void insertar(CuentaBancaria cuentaBancaria) {
 		// TODO Auto-generated method stub
-		
+		this.bancariaRepository.insertar(cuentaBancaria);
 	}
 
 	@Override
@@ -39,5 +41,6 @@ public class CuentaBancariaServiceImpl implements ICuentaBancariaService {
 		// TODO Auto-generated method stub
 		
 	}
+	
 
 }

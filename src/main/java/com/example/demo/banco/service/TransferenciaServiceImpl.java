@@ -4,50 +4,52 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.demo.banco.modelo.CuentaBancaria;
 import com.example.demo.banco.modelo.Transferencia;
 import com.example.demo.banco.repository.ITransferenciaRepository;
 
-public class TransferenciaServiceImpl implements ITransferenciaService {
+@Service
+public class TransferenciaServiceImpl implements ITransferenciaService{
+
 	@Autowired
-    private ITransferenciaRepository transferenciaRepository ;
-    private ICuentaBancariaService cuentaService;
-    @Override
-    public List<Transferencia> buscarReporte() {
-        // TODO Auto-generated method stub
-        return this.transferenciaRepository.buscarTodos();
-    }
-    @Override
-    public void realizar(String cuentaOrigen, String cuentaDestino, BigDecimal monto) {
-        // TODO Auto-generated method stub
-        //////PASOS PARA LA CUENTA DE ORIGEN/////
-    //1er. Paso: Buscar la cuenta origen
-        CuentaBancaria origen =this.cuentaService.buscarPorNumero(cuentaOrigen);
-    //2do. Paso: Consultar el saldo
-        BigDecimal saldoOrigen =origen.getSaldo();
-    //3er. Paso: Operación de la transferencia (restamos al saldo de origen)
-        BigDecimal nuevoSaldo = saldoOrigen.subtract(monto);
-        
-    //4to. Paso: Actualización cuenta de origen
-    origen.setSaldo(nuevoSaldo);
-    this.cuentaService.actualizar(origen);//Aquí mandamos a la BD
-    
-    //////PASOS PARA LA CUENTA DE DESTINO/////
-        //1er. Paso: Buscar la cuenta destino
-    CuentaBancaria destino = this.cuentaService.buscarPorNumero(cuentaDestino);
-        //2do. Paso: Consultar el saldo
-    BigDecimal saldoDestino = destino.getSaldo();
-        //3er. Paso: Operación de la transferencia (sumamos al saldo de destino)
-    BigDecimal nuevoSaldoDestino = saldoDestino.add(monto);
-        //4to. Paso: Actualización cuenta de destino
-        destino.setSaldo(nuevoSaldoDestino);
-        this.cuentaService.actualizar(destino);
-        
-    }
-    
+	private ITransferenciaRepository TransferenciaRepository;
+	
+	@Autowired
+	private ICuentaBancariaService bancariaService;
 
+	@Override
+	public List<Transferencia> buscarReporte() {
+		// TODO Auto-generated method stub
+		return this.TransferenciaRepository.buscarTodos();
+	}
 
+	@Override
+	public void realizar(String numeroOrigen, String numeroDestino, BigDecimal monto) {
+		// TODO Auto-generated method stub
+		
+		//ORIGEN
+		//1.-BUSCAR LA CUENTA ORIGEN
+		CuentaBancaria origen = this.bancariaService.buscarPorNUmero(numeroOrigen);
+		//2.-CONSULTAR EL SALDO DE LA CUENTA ORIGEN
+		BigDecimal saldoOrigen=origen.getSaldo();
+		//3.-OPERACION RESTA EN EL ORIGEN
+		BigDecimal nuevoSaldo= saldoOrigen.subtract(monto);
+		//4.-ACTUALIZACION CUENTA ORIGEN
+		origen.setSaldo(nuevoSaldo);
+		this.bancariaService.actualizar(origen);
+		
+		//DESTINO
+		//1.-BUSCAR LA CUENTA DESTINO
+		CuentaBancaria destino = this.bancariaService.buscarPorNUmero(numeroDestino);
+		//2.-CONSULTAR EL SALDO DE LA CUENTA DESTINO
+		BigDecimal saldoDestino=destino.getSaldo();
+		//3.-OPERACION SUMA EN EL DESTINO
+		BigDecimal nuevoSaldoDestino= saldoDestino.add(monto);
+		//4.-ACTUALIZACION CUENTA DESTINO
+		destino.setSaldo(nuevoSaldoDestino);
+		this.bancariaService.actualizar(destino);
+	}
 
 }
-

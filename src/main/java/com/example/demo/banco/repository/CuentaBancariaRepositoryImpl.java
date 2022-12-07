@@ -7,55 +7,53 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.banco.modelo.CuentaBancaria;
+import com.example.demo.banco.service.ICuentaBancariaService;
 
 @Repository
-public class CuentaBancariaRepositoryImpl implements ICuencaBancariaRepository {
-	private static List<CuentaBancaria> baseCuentas = new ArrayList<>();
-	@Override
-	public CuentaBancaria buscarPorNumero(String numeroCuenta) {
+public class CuentaBancariaRepositoryImpl implements ICuentaBancariaService{
+
+	private static List<CuentaBancaria> baseCuentas= new ArrayList<>();
+	
+	public CuentaBancaria buscarPorNUmero(String numeroCuenta) {
 		// TODO Auto-generated method stub
-		//SELECT * FROM CUENTA C WHERE C.NUMERO = numeroCuenta
-		//*Mock
 		
+		//SELECT * FROM CUENTA C WHERE C.NUMERO=numeroCuenta
 		
-		//CuentaBancaria cuenta = new CuentaBancaria();
-		//cuenta.setNumero(numeroCuenta);
-		//cuenta.setSaldo(new BigDecimal(100));
-		//cuenta.setTipo("A");
-		//cuenta.setTitular("Jimmy Ortega");
-		
-		CuentaBancaria cuenta = null;
+		CuentaBancaria cuenta = new CuentaBancaria();
+//		cuenta.setNumero(numeroCuenta);
+//		cuenta.setSaldo(new BigDecimal(100));
+//		cuenta.setTipo("A");
+//		cuenta.setTitular("EDISON CAYAMBE");
+//		
 		for(CuentaBancaria cb: baseCuentas) {
-			if(cb.getNumero().equals(numeroCuenta)) {
+			if(cb.getNumero().equals(numeroCuenta)){
 				cuenta=cb;
-				
 			}
 		}
-		System.out.println("Se busca la cuenta bancaria:"+numeroCuenta);
-		return cuenta;
-	}
-
-	@Override
-	public CuentaBancaria buscar(Integer id) {
-		System.out.println("Se busca la cuenta:"+id);
+		System.out.println("se busca la cuenta: "+cuenta);
 		return null;
 	}
 
-	@Override
+	public CuentaBancaria buscar(Integer id) {
+		// TODO Auto-generated method stub
+		System.out.println("se busca la cuenta: "+id);
+		return null;
+	}
+
 	public void actualizar(CuentaBancaria cuentaBancaria) {
-		System.out.println("Se actualiza la cuenta:"+ cuentaBancaria);
+		// TODO Auto-generated method stub
+		System.out.println("se actualiza la cuenta: "+cuentaBancaria);
 		
 	}
 
-	@Override
 	public void insertar(CuentaBancaria cuentaBancaria) {
-		System.out.println("Se inserta la cuenta Bancaria");
+		// TODO Auto-generated method stub
+		System.out.println("se inserta la cuenta bancaria: "+cuentaBancaria);
 		baseCuentas.add(cuentaBancaria);
 	}
 
-	@Override
 	public void borrar(Integer id) {
-		System.out.println("se borra lka cuenta bancaria");
+		// TODO Auto-generated method stub
 		
 	}
 

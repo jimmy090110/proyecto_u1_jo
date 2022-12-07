@@ -5,11 +5,17 @@ import java.math.BigDecimal;
 public class CuentaBancaria {
 	private String numero;
 	private String tipo;
-	private BigDecimal saldo;  //usar BigDecimal cuando usamos valores monetarios
-	private String titular; //alf shif r s apra refactor
+	private BigDecimal saldo;
+	private String titular;
 	
-	
-	//Metodos SET y GET
+	@Override
+	public String toString() {
+		return "CuentaBancaria [numero=" + numero + ", tipo=" + tipo + ", saldo=" + saldo + ", titular=" + titular
+				+ ", getNumero()=" + getNumero() + ", getTipo()=" + getTipo() + ", getSaldo()=" + getSaldo()
+				+ ", getTitular()=" + getTitular() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
+				+ ", toString()=" + super.toString() + "]";
+	}
+	//Metodos GET Y SET
 	public String getNumero() {
 		return numero;
 	}
@@ -36,7 +42,4 @@ public class CuentaBancaria {
 	}
 	
 	
-	
-	
-
 }

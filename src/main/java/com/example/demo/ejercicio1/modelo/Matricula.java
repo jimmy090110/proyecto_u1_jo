@@ -4,11 +4,20 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class Matricula {
-
 	private LocalDateTime fecha;
 	private BigDecimal valor;
 	private Propietario propietario;
 	private Vehiculo vehiculo;
+	
+	
+	
+	
+	@Override
+	public String toString() {
+		return "Matricula [fecha=" + fecha + ", valor=" + valor + ", propietario=" + propietario + ", vehiculo="
+				+ vehiculo + "]";
+	}
+	//SET y GET
 	public LocalDateTime getFecha() {
 		return fecha;
 	}
@@ -33,11 +42,7 @@ public class Matricula {
 	public void setVehiculo(Vehiculo vehiculo) {
 		this.vehiculo = vehiculo;
 	}
-	@Override
-	public String toString() {
-		return "Matricula [fecha=" + fecha + ", valor=" + valor + ", propietario=" + propietario + ", vehiculo="
-				+ vehiculo + "]";
-	}
 	
 	
+
 }

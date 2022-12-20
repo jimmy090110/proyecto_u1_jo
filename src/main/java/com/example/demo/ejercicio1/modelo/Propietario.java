@@ -3,11 +3,21 @@ package com.example.demo.ejercicio1.modelo;
 import java.time.LocalDateTime;
 
 public class Propietario {
-
+	
 	private String nombre;
 	private String apellido;
 	private String cedula;
-	private LocalDateTime FechaNacimiento;
+	private LocalDateTime fechaNacimiento;
+	
+	
+	
+	
+	@Override
+	public String toString() {
+		return "Propietario [nombre=" + nombre + ", apellido=" + apellido + ", cedula=" + cedula + ", fechaNacimiento="
+				+ fechaNacimiento + "]";
+	}
+	//SET y GET
 	public String getNombre() {
 		return nombre;
 	}
@@ -27,16 +37,16 @@ public class Propietario {
 		this.cedula = cedula;
 	}
 	public LocalDateTime getFechaNacimiento() {
-		return FechaNacimiento;
+		return fechaNacimiento;
 	}
 	public void setFechaNacimiento(LocalDateTime fechaNacimiento) {
-		FechaNacimiento = fechaNacimiento;
-	}
-	@Override
-	public String toString() {
-		return "Propietario [nombre=" + nombre + ", apellido=" + apellido + ", cedula=" + cedula + ", FechaNacimiento="
-				+ FechaNacimiento + "]";
+		this.fechaNacimiento = fechaNacimiento;
 	}
 	
 	
+	
+	
+	
+	
+
 }

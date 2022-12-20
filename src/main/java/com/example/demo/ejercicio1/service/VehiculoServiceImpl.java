@@ -39,10 +39,13 @@ public class VehiculoServiceImpl implements IVehiculoService {
 	}
 
 	@Override
-	public void modificar(String placa ,BigDecimal precio, String marca) {
+	public void modificar(String placa,BigDecimal precio, String marca) {
 		// TODO Auto-generated method stub
-	Vehiculo v = this.iVehiculoRepository.buscar(placa);
-	
+		Vehiculo vehiculo = this.iVehiculoRepository.buscar(placa);
+		vehiculo.setMarca(marca);
+		vehiculo.setPrecio(precio);
+		
+		this.iVehiculoRepository.actualizar(vehiculo);
 		
 	}
 

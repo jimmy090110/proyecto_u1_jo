@@ -4,9 +4,13 @@ import com.example.demo.ejercicio1.modelo.Vehiculo;
 
 public interface IVehiculoRepository {
 
-	
-	public Vehiculo buscar(String placa);
+	// CRUD
 	public void insertar(Vehiculo vehiculo);
+
 	public void actualizar(Vehiculo vehiculo);
+
+	public Vehiculo buscar(String placa);
+
 	public void borrar(String placa);
+
 }
